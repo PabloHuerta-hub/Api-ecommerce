@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "ty
 import { Nombre } from "./extends entities/Nombres";
 import { Rol } from "../roles/Rol";
 import { Direccion } from "../direccion/Direccion";
+import { Permiso_por_Rol } from "../roles/Permisos_por_Rol";
 @Entity() 
 export class Usuarios extends Nombre{
     @PrimaryGeneratedColumn()

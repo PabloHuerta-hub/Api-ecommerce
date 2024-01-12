@@ -18,6 +18,7 @@ if(datos){
         permisos: datos.permisos,
         name: datos.nombre,
       };
+  
      const token = jwt.sign(
         {
           sub,

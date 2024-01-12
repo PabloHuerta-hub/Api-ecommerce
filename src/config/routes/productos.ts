@@ -11,65 +11,17 @@ router.get("/producto/:id", async(req,res)=>{
 })
 
 router.post("/ingresar_producto", async (req, res) => {
-  try {
-    const requiredPermission = 1;
-    const authorization = req.headers.authorization;
-    const resultado = tokenjwt.verifyToken(authorization);
-    if (resultado.error) {
-      res.status(401).send(resultado.error);
-    } else {
-      if (
-        resultado.permisos &&
-        resultado.permisos.includes(requiredPermission)
-      ) {
-         await productosController.ingresarProducto(res, req);
-        
-      } else {
-        res.status(401).send("permisos no validos");
-      }
-    }
-  } catch (error) {
-    console.error(error);
-  }
+ productosController.ingresarProducto(req,res)
 });
 
 router.delete("/borrar_producto/:id", async (req, res) => {
-  try {
-    const authorization = req.headers.authorization;
-    const requiredPermission = 2;
-    const resultado = tokenjwt.verifyToken(authorization);
-    if (resultado.error) {
-      res.status(401).send(resultado.error);
-    } else {
-      if (
-        resultado.permisos &&
-        resultado.permisos.includes(requiredPermission)
-      ) {
-          productosController.borrarProducto(req, res);
-      } else {
-        res.status(401).send("permisos no validos");
-      }
-    }
-  } catch (error) {
-    console.error(error);
-  }
+  productosController.borrarProducto(req,res)
 });
 
 router.put("/actualizar_producto", async (req, res) => {
-  try {
-    const authorization = req.headers.authorization;
-    const requiredPermission = 3;
-    const resultado = tokenjwt.checkpermissions(authorization, requiredPermission);
-    if(resultado){
-      await productosController.actualizarProducto(req,res);
+
+    productosController.actualizarProducto(req,res);
       
-    }else{
-     
-    }
-    
-  } catch (error) {
-    console.error(error);
-  }
 });
 
 export default router;

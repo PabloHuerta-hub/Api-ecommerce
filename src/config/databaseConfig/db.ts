@@ -7,6 +7,8 @@ import { Productos } from "../entities/productos/Productos";
 import { Rol } from "../entities/roles/Rol";
 import { Direccion } from "../entities/direccion/Direccion";
 import { Region } from "../entities/direccion/Region";
+import { Permiso } from "../entities/roles/Permisos";
+import { Permiso_por_Rol } from "../entities/roles/Permisos_por_Rol";
 export const AppDataSource = new DataSource({
   type: "mssql",
   host: process.env.HOST,
@@ -16,7 +18,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE,
   synchronize: false,
   logging: false,// Muestra la query que se ejecuta hacia la base de datos
-  entities: [Usuarios, Productos,Rol, Direccion,Region],
+  entities: [Usuarios, Productos,Rol, Direccion,Region, Permiso, Permiso_por_Rol],
   subscribers: [],
   migrations: [],
   options: {
